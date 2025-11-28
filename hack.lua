@@ -19,16 +19,9 @@ local function FireGainMuscle()
     print("Completed 1000 'GainMuscle' actions inside FireGainMuscle.")
 end
 
-local numberOfCycles = 100000 -- Repeat blocks of gain muscle
-local delayBetweenCycles = 0 -- Handled by inner wait
-
 print("Starting the FOREVER loop. This will continuously fire 1000 'GainMuscle' actions per cycle.")
 
+-- The loop below repeats forever
 while true do
-    print("\n--- Starting new cycle of " .. numberOfCycles .. " blocks of 1000 'GainMuscle' actions ---")
-    for cycle = 1, numberOfCycles do
-        FireGainMuscle()
-        print("Completed cycle block: " .. cycle .. " / " .. numberOfCycles)
-    end
-    print("--- Finished massive cycle. Restarting immediately. ---")
+    FireGainMuscle()
 end
