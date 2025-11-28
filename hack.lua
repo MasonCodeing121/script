@@ -13,6 +13,14 @@ local function FireRemote()
                 [1] = "GainMuscle" -- The action string
             }
         }
+        local args = {
+            [1] = {
+                [1] = "SellMuscle"
+            }
+        }
+
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+
         
         -- Fire the event with the argument
         RemoteEvent:FireServer(unpack(args))
