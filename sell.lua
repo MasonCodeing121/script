@@ -1,30 +1,26 @@
 local RepStorage = game:GetService("ReplicatedStorage")
 local RemoteEvent = RepStorage:WaitForChild("RemoteEvent")
 
--- Settings for how many times to fire GainMuscle and delay between each
-local ACTIONS_PER_FIRE_REMOTE = 1000
-local DELAY_PER_ACTION = 0.01
+-- Settings for repeating SellMuscle infinitely
+local ACTIONS_PER_CYCLE = 1000      -- Number of 'SellMuscle' fires per cycle block
+local DELAY_PER_ACTION = 0.01       -- Delay between each action (seconds)
 
-local function FireGainMuscle()
+local function FireSellMuscle()
     local args = {
-    [1] = {
-        [1] = "SellMuscle"
+        [1] = {
+            [1] = "SellMuscle"
+        }
     }
-}
+    RemoteEvent:FireServer(unpack(args))
+end
 
-game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
-
-
-local numberOfCycles = 100000 -- Repeat blocks of gain muscle
-local delayBetweenCycles = 0 -- Handled by inner wait
-
-print("Starting the FOREVER loop. This will continuously fire 1000 'GainMuscle' actions per cycle.")
+print("Starting the infinite SellMuscle loop. Each cycle will fire " .. ACTIONS_PER_CYCLE .. " SellMuscle actions.")
 
 while true do
-    print("\n--- Starting new cycle of " .. numberOfCycles .. " blocks of 1000 'GainMuscle' actions ---")
-    for cycle = 1, numberOfCycles do
-        FireGainMuscle()
-        print("Completed cycle block: " .. cycle .. " / " .. numberOfCycles)
+    print("\n--- Starting new cycle: Firing " .. ACTIONS_PER_CYCLE .. " SellMuscle actions ---")
+    for action = 1, ACTIONS_PER_CYCLE do
+        FireSellMuscle()
+        task.wait(DELAY_PER_ACTION)
     end
-    print("--- Finished massive cycle. Restarting immediately. ---")
+    print("--- Finished cycle. Restarting immediately. ---")
 end
