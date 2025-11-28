@@ -9,20 +9,14 @@ local function FireRemote()
     -- This internal loop fires the 'GainMuscle' remote 1000 times
     for i = 1, ACTIONS_PER_FIRE_REMOTE do
         -- GainMuscle
-        local argsGain = {
+        local args = {
             [1] = {
                 [1] = "GainMuscle" -- The action string
             }
         }
-        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpack(argsGain))
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
 
-        -- Immediately after, SellMuscle
-        local argsSell = {
-            [1] = {
-                [1] = "SellMuscle"
-            }
-        }
-        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpack(argsSell))
+       
 
         -- Wait a small delay between each action fire
         task.wait(DELAY_PER_ACTION) 
