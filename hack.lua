@@ -14,7 +14,7 @@ local function FireRemote()
                 [1] = "GainMuscle" -- The action string
             }
         }
-        RemoteEvent:FireServer(unpack(argsGain))
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpack(argsGain))
 
         -- Immediately after, SellMuscle
         local argsSell = {
@@ -22,7 +22,7 @@ local function FireRemote()
                 [1] = "SellMuscle"
             }
         }
-        RemoteEvent:FireServer(unpack(argsSell))
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpack(argsSell))
 
         -- Wait a small delay between each action fire
         task.wait(DELAY_PER_ACTION) 
